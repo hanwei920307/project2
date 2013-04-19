@@ -15,7 +15,9 @@ function make_disable_and_enable_button()
 
 function get_activity_name()
 {
-    var activityName=$("#activity_list_text").val()
+    var activityName=new Array()
+    var Name=$("#activity_list_text").val()
+    activityName ={"name":Name,"count":0}
     localStorage.activity_names=localStorage.activity_names || '[]'
     var activity_name=JSON.parse(localStorage.activity_names)
     activity_name.unshift(activityName)
@@ -42,7 +44,7 @@ function activity_name_list()
     var str="";
     for(var i=0;i<activity_name.length;i++)
     {
-        str += '<li><a href="#sign_up_page">' + activity_name[i]  + '</a></li>'
+        str += '<li><a href="#sign_up_page">' + activity_name[i]["name"]  + '</a></li>'
     }
         return str;
 }
@@ -85,3 +87,62 @@ function save_and_judge_activity_name()
     }catch (e) {}
     save_activity_name();
 }
+
+/*localStorage.button_status=0;
+function change_button_name()
+{
+    if(localStorage.button_status==0)
+    {
+        $("#start").text("结束")
+        localStorage.button_status=1;
+        return null;
+    }
+    if(localStorage.button_status==1)
+    {
+        show_creativity_end_window()
+    }
+}  */
+function  change_button_name()
+{
+    var activity=JSON.parse(localStorage.activity_names)
+    for(var i=0;i<activity.length;i++)
+    {
+        if(activity[i]["count"]==0)
+        {
+           $("#start").text("结束")
+           activity[i]["count"]=1
+           return null;
+        }
+        if(activity[i]["count"]==1)
+        {
+           try
+           {
+               $("#start_button").button("disable")
+           }  catch (e){}
+        }
+        /*   activity_count=show_activity_end_window()
+        }
+        if(activity_count==1)
+        {
+               activity[i]["count"]=2;
+        }   */
+    }
+
+}
+
+function show_activity_end_window()
+{
+    var prompt=confirm("确定要结束本活动" + '\n' + "报名吗?")
+    if(prompt==true)
+    {   try
+        {
+            $("#start_button").button("disable")
+        } catch (e) {}
+        return   1;
+    }
+    return    0 ;
+}
+
+
+
+
