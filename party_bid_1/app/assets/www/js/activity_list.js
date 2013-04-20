@@ -15,12 +15,12 @@ function make_disable_and_enable_button()
 
 function get_activity_name()
 {
-    var activityName=new Array()
     var Name=$("#activity_list_text").val()
-    activityName ={"name":Name,"count":0}
+    localStorage.start_activity_name= $("#activity_list_text").val()
+    var activity ={"name":Name,"count":0}
     localStorage.activity_names=localStorage.activity_names || '[]'
     var activity_name=JSON.parse(localStorage.activity_names)
-    activity_name.unshift(activityName)
+    activity_name.unshift(activity)
     localStorage.activity_names = JSON.stringify(activity_name)
 }
 
@@ -44,8 +44,9 @@ function activity_name_list()
     var str="";
     for(var i=0;i<activity_name.length;i++)
     {
-        str += '<li><a href="#sign_up_page">' + activity_name[i]["name"]  + '</a></li>'
+        str += '<li><a onclick="change_button_name(' + i + ')" >' + activity_name[i]["name"]  + '</a></li>'
     }
+    console.log("a")
         return str;
 }
 
@@ -88,49 +89,123 @@ function save_and_judge_activity_name()
     save_activity_name();
 }
 
-/*localStorage.button_status=0;
-function change_button_name()
+function change_button_name(activity_name)
 {
-    if(localStorage.button_status==0)
+    window.location="#sign_up_page"
+    var activity=JSON.parse(localStorage.activity_names)
+    localStorage.start_activity_name=activity[activity_name]["name"]
+    var start_count=0;
+    for(var i=0;i<activity.length;i++)
     {
+        if(activity[i]["count"]==1)
+        {
+             start_count ++;
+
+        }
+    }
+
+    if(activity[activity_name]["count"]==0 && start_count!=1 )
+    {
+        window.location="#sign_up_page"
+        $("#start").text("开始")
+        $("#start_button").button("enable")
+    }
+    if(activity[activity_name]["count"]==1)
+    {
+        window.location="#sign_up_page"
         $("#start").text("结束")
-        localStorage.button_status=1;
-        return null;
+        $("#start_button").button("disable")
     }
-    if(localStorage.button_status==1)
+    if(activity[activity_name]["count"]==2)
     {
-        show_creativity_end_window()
+        window.location="#sign_up_page"
+        $("#start").text("结束")
+        $("#start_button").button("disable")
     }
-}  */
-function  change_button_name()
+}
+
+function  click_start_to_end_button()
+{
+    var activity=JSON.parse(localStorage.activity_names)
+    for(var i=activity.length-1;i>=0;i--)
+    {
+        if(activity[i]["name"]==localStorage.start_activity_name)
+        {
+            activity[i]["count"]=1
+        }
+    }
+    localStorage.activity_names=JSON.stringify(activity)
+    $("#start").text("结束")
+}
+ /*
+//function make_button_disable()
 {
     var activity=JSON.parse(localStorage.activity_names)
     for(var i=0;i<activity.length;i++)
     {
         if(activity[i]["count"]==0)
         {
-           $("#start").text("结束")
-           activity[i]["count"]=1
-           return null;
+            $("#start").text("开始")
+            $("#start_button").button("enable")
         }
+        else(activity[i]["count"]==1)
+        {
+            $("#start_button").button("disable")
+        }
+
+    }
+}
+
+/*function click_start_to_end_button()
+{
+    var activity=JSON.parse(localStorage.activity_names)
+    for(var i=0;i<activity.length;i++)
+    if(activity[i]["count"]==0)
+    {
+
+        $("#start").text("开始")
+    }
+}
+
+/*function  judge_button_enable()
+{
+    var activity=JSON.parse(localStorage.activity_names)
+    for(var i=0;i<activity.length;i++)
+    {
         if(activity[i]["count"]==1)
         {
-           try
-           {
-               $("#start_button").button("disable")
-           }  catch (e){}
+            try
+            {
+                $("#start_button").button("disable")
+                $("#create_act_button").button("disable")
+            }  catch (e){}
         }
+    }
+  */
+/*function click_end_button_to_disable()
+{
+    var activity=JSON.parse(localStorage.activity_names)
+    var prompt=confirm("确定要结束本活动" + '\n' + "报名吗?")
+    if(prompt==true)
+    {
+        try
+        {
+        $("#start_button").button("disable")
+        } catch (e) {}
+        activity[a]["count"]=2;
+    }
+}
         /*   activity_count=show_activity_end_window()
         }
         if(activity_count==1)
         {
                activity[i]["count"]=2;
         }   */
-    }
 
-}
 
-function show_activity_end_window()
+
+
+/*function confirm_activity_end_window()
 {
     var prompt=confirm("确定要结束本活动" + '\n' + "报名吗?")
     if(prompt==true)
@@ -141,7 +216,7 @@ function show_activity_end_window()
         return   1;
     }
     return    0 ;
-}
+}  */
 
 
 

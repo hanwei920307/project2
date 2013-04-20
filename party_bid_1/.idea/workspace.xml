@@ -8,8 +8,8 @@
     <file path="/.rvmrc" changelist="79a0856a-3c9d-4360-9def-2af34e81e7ab" time="1365817309395" ignored="false" />
     <file path="/create_page.js" changelist="79a0856a-3c9d-4360-9def-2af34e81e7ab" time="1365833400165" ignored="false" />
     <file path="/create_activity_page1.html" changelist="79a0856a-3c9d-4360-9def-2af34e81e7ab" time="1365820904688" ignored="false" />
-    <file path="/index.html" changelist="79a0856a-3c9d-4360-9def-2af34e81e7ab" time="1366278393786" ignored="false" />
-    <file path="/activity_list.js" changelist="79a0856a-3c9d-4360-9def-2af34e81e7ab" time="1366363287294" ignored="false" />
+    <file path="/index.html" changelist="79a0856a-3c9d-4360-9def-2af34e81e7ab" time="1366449854764" ignored="false" />
+    <file path="/activity_list.js" changelist="79a0856a-3c9d-4360-9def-2af34e81e7ab" time="1366451438419" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,10 +31,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="activity_list.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="activity_list.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/www/js/activity_list.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="79" selection-start="2620" selection-end="2620" vertical-scroll-proportion="0.40104166">
+            <state line="116" column="38" selection-start="2865" selection-end="2865" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -43,7 +43,16 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="89" selection-start="2268" selection-end="2268" vertical-scroll-proportion="-8.708333">
+            <state line="47" column="41" selection-start="1885" selection-end="1897" vertical-scroll-proportion="-27.208334">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="31" selection-start="26" selection-end="26" vertical-scroll-proportion="0.051282052">
               <folding />
             </state>
           </provider>
@@ -69,9 +78,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="7" />
-    <option name="width" value="1341" />
-    <option name="height" value="736" />
+    <option name="x" value="-3" />
+    <option name="width" value="1372" />
+    <option name="height" value="745" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -99,6 +108,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -259,18 +269,17 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="reference.settings.ide.settings.web.browsers" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="reference.settings.ide.settings.web.browsers" />
     <property name="last_opened_file_path" value="$USER_HOME$/RubymineProjects/untitled1" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="JavaScript Debug.create_activity_page1.html">
     <configuration default="false" name="create_activity_page1.html" type="JavascriptDebugSession" factoryName="Local" singleton="true" temporary="true">
@@ -364,17 +373,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="7" width="1341" height="736" extended-state="0" />
-    <editor active="false" />
+    <frame x="-3" y="0" width="1372" height="745" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2921523" sideWeight="0.60032624" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30121395" sideWeight="0.99349594" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967373" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.006504065" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -442,18 +451,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/assets/www/_index.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/www/js/activity_list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/下载/party_bid-liqiang/www/pages/_create_activity_page.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="117" selection-start="39" selection-end="39" vertical-scroll-proportion="0.0" />
@@ -516,16 +513,30 @@
         <state line="57" column="16" selection-start="2891" selection-end="3060" vertical-scroll-proportion="0.58225507" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/www/index.html">
+    <entry file="file://$USER_HOME$/project2/party_bid_1/app/assets/www/js/activity_list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="89" selection-start="2268" selection-end="2268" vertical-scroll-proportion="-8.708333">
+        <state line="46" column="39" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.46153846">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/www/js/activity_list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="79" selection-start="2620" selection-end="2620" vertical-scroll-proportion="0.40104166">
+        <state line="116" column="38" selection-start="2865" selection-end="2865" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="41" selection-start="1885" selection-end="1897" vertical-scroll-proportion="-27.208334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="31" selection-start="26" selection-end="26" vertical-scroll-proportion="0.051282052">
           <folding />
         </state>
       </provider>
