@@ -56,7 +56,14 @@ function activity_name_list()
     var str="";
     for(var i=0;i<activity_name.length;i++)
     {
-        str += '<li><a onclick="change_button_name(' + i + ')" >' + activity_name[i]["name"]  + '</a></li>'
+        if(activity_name[i]["count"]==1)
+        {
+            str +='<li data-theme="e" ><a onclick="change_button_name(' + i + ')" >' + activity_name[i]["name"]  + '</a></li>'
+        }
+        else
+        {
+            str += '<li><a   onclick="change_button_name(' + i + ')" >' + activity_name[i]["name"]  + '</a></li>'
+        }
     }
         return str;
 }
@@ -84,20 +91,18 @@ function display_activity_name()
 
 function save_and_judge_activity_name()
 {
-    console.log(" save_and_judge_activity_name() begin")
-    try
+    localStorage.activity_names=localStorage.activity_names || '[]'
+    var activity_name=JSON.parse(localStorage.activity_names)
+    var new_name=$("#activity_list_text").val()
+    for(var i=0;i<activity_name.length;i++)
     {
-        var activity_name=JSON.parse(localStorage.activity_names)
-        var new_name=$("#activity_list_text").val()
-        for(var i=0;i<activity_name.length;i++)
-        {
-           if(new_name==activity_name[i])
+           if(new_name==activity_name[i]["name"])
            {
              alert("活动名不能重复!")
+             $("#activity_list_text").val("")
                  return null;
            }
-        }
-    }catch (e) {}
+    }
     save_activity_name();
     create_button()
 }
@@ -113,7 +118,6 @@ function change_button_name(activity_name)
     var start2=0;
     for(var i=0;i<activity.length;i++)
     {
-        console.log("for begin")
         if(activity[i]["count"]==1)
         {
              start_count=1;
@@ -127,7 +131,6 @@ function change_button_name(activity_name)
     }
         if(activity[activity_name]["count"]==0 && start_count==0 )
         {
-            console.log("if(activity[activity_name][count]==0 && start_count==0 )")
              $("#start").text("开始")
              $("#start_activity_button").button("enable")
         }
@@ -162,8 +165,6 @@ function change_button_name(activity_name)
             $("#start").text("结束")
             $("#start_activity_button").button("disable")
         }
-        console.log("for end");
-
 }
 
 function  click_start_to_end_button()
@@ -179,6 +180,7 @@ function  click_start_to_end_button()
     }
     localStorage.activity_names=JSON.stringify(activity)
     $("#start").text("结束")
+    display_activity_name()
 }
 
 function create_activity_btn_disable()
@@ -189,7 +191,6 @@ function create_activity_btn_disable()
     {
         if(activity[i]["count"]==1)
         {
-            console.log("create_activity_btn_disable()")
             $("#create_activity_button").button("disable")
             break;
 
@@ -204,14 +205,25 @@ function create_activity_btn_disable()
 
 function judge_button_name()
 {
+    console.log("judge")
     if(localStorage.now_activity_page_count==0)
     {
         click_start_to_end_button()
+        console.log("create_native_save_new_message")
+        create_native_save_new_activity_applicants_message()
     }
     else if(localStorage.now_activity_page_count==1)
     {
         confirm_activity_end_window()
     }
+}
+
+function create_native_save_new_activity_applicants_message()
+{
+
+    console.log("save_applicant_message")
+    var now_activity=localStorage.now_activity_page_name
+    localStorage[now_activity]=JSON.stringify({"name":now_activity,"message":[]})
 }
 function confirm_activity_end_window()
 {
@@ -232,11 +244,144 @@ function confirm_activity_end_window()
            {
                activity[i]["count"]=2
                localStorage.activity_names=JSON.stringify(activity)
-               console.log(" for(var i=0;i<activity.length;i++)")
            }
+        }
+        display_activity_name()
+
+    }
+}
+
+function reply_message_to_applicant(json_message)
+{
+    console.log("reply_message")
+    var  return_phone="";
+    if(localStorage.now_activity_page_count==0)
+    {
+        var return_message="活动尚未开始，请稍后"
+        native_accessor.send_sms(return_phone,return_message);
+    }
+    else if(localStorage.now_activity_page_count==1)
+    {
+         console.log("activity_page_count=1")
+        is_applicant_same(json_message)
+    }
+    else if(localStorage.now_activity_page_count==2)
+    {
+        var return_message="对不起,报名已经结束"
+        native_accessor.send_sms(return_phone,return_message);
+    }
+
+}
+function process_user_message(json_message)
+{
+    console.log("process")
+    judge_sms_ilgel(json_message)
+
+}
+
+function is_applicant_same(json_message)                       //判断报名者是否相同
+{
+    var activity_message=JSON.parse(localStorage[localStorage.now_activity_page_name])
+    if(activity_message["message"]=="")
+    {
+        console.log("shifouchongming")
+        save_activity_applicants_name_and_phone(json_message)
+
+    }
+    else
+    {
+        console.log("else")
+        var new_activity_applicants_message=JSON.parse(localStorage[localStorage.now_activity_page_name])
+        for(var i=0;i<new_activity_applicants_message["message"].length;i++)
+        {
+            console.log("undifine")
+            if(json_message.message[0].phone==new_activity_applicants_message["message"][i].phone)
+            {
+                console.log("dianhuahaomaxiangtong")
+                reply_applicant_not_repeat_apply()
+            }
+            else
+            {
+                console.log("号码不同")
+                save_activity_applicants_name_and_phone(json_message)
+                dispaly_list_people_name_and_tel()
+                console.log("display_people_name")
+            }
         }
     }
 }
+
+function save_activity_applicants_name_and_phone(json_message)                 //  存储当前活动的报名者信息
+{
+    var new_applicant={"name":"Name","phone":"Phone"}
+    new_applicant.name=json_message.messages[0].message.substring(2);
+    new_applicant.phone=json_message.messages[0].phone;
+    console.log("ctivity_applicants_message")
+    var activity_name=localStorage.now_activity_page_name
+    var new_acitivity_applicangts_message=JSON.parse(localStorage[activity_name])
+    console.log("ctivity_applicant")
+    try
+    {
+        new_acitivity_applicangts_message["message"].unshift(new_applicant)
+    }   catch (e) {}
+    console.log("ctivity_save")
+    localStorage[activity_name]=JSON.stringify(new_acitivity_applicangts_message)
+    console.log("a")
+    list_people_name_and_tel()
+    console.log("b")
+}
+
+function reply_applicant_not_repeat_apply()
+{
+    return message="您已经报名成功，请勿重复报名！"
+    native_accessor.send_sms(json_message.messages[0].phone,return_message)
+}
+
+function list_people_name_and_tel()
+{
+    var name_tel_str="";
+    var new_array=JSON.parse(localStorage[localStorage.now_activity_page_name])
+    console.log("new")
+    for(var i=0;i<new_array["message"].length;i++)
+    {
+        name_tel_str += '<li>' + new_array["message"][i].name + '<span style="float:right;"> '
+            + new_array["message"][i].phone + '</span></li>'
+    }
+    console.log(name_tel_str)
+    $("#show_sign_up_name_and_phone").html(name_tel_str)
+    try
+    {
+        console.log("123")
+        $("#show_sign_up_name_and_phone").listview('refresh')
+    }
+    catch(e) {}
+    console.log("shihsi")
+}
+
+function show_applicants_num()
+{
+    var applicants=JSON.parse(localStorage.new_activity_applicants_message)
+    var num=applicants.length
+    $("#compute_applicants_num").html("报名(num人)")
+}
+
+function judge_sms_ilgel(json_message)
+{
+    console.log("judge_sms_ilgel")
+        var mark=json_message.messages[0].message.substring(0,2);
+        if(mark == "BM"||mark =="bm"||mark=="bM"||mark=="Bm")
+        {
+            reply_message_to_applicant(json_message)
+        }
+        else
+        {
+            return message="报名格式错误！"
+            native_accessor.send_sms(json_message.messages[0].phone,return_message)
+        }
+}
+
+
+
 
 
 
