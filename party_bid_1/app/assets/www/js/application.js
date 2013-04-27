@@ -7,6 +7,7 @@ $(document).ready(function () {
     $.mobile.allowCrossDomainPages = true;
     $.support.cors = true;
     native_access = new NativeAccess() ;
+    finish_text_then_ready()
   /*
     if(refresh_page){
       refresh_page();
